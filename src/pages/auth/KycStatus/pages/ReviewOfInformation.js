@@ -23,7 +23,7 @@ const ReviewOfInformation = ({route}) => {
   const dispatch = useDispatch();
   const data = route.params;
 
-  let id = data?.data?.userId ? data?.data?.userId : data?.data;
+    let id = data?.data?.userId?data?.data?.userId:data?.data
 
   const onPress = () => {
     navigator.goBack();
@@ -39,13 +39,15 @@ const ReviewOfInformation = ({route}) => {
     userId: id,
     onErrorAction,
   };
-  const isFocsed = useIsFocused();
+  const isFocsed =useIsFocused()
   useEffect(() => {
+     
     if (id) {
-      // console.log('obj', obj)
+
+    // console.log('obj', obj)
       dispatch(requestReviewInfomations(obj));
-    }
-  }, [id, isFocsed]);
+   }
+  }, [id,isFocsed]);
 
   const {isLoading, result} = useSelector(state => state.reviewInfomations);
 
@@ -54,22 +56,21 @@ const ReviewOfInformation = ({route}) => {
       Loading={isLoading}
       onPress={onPress}
       existData={result?.Documents.length == 0 ? false : true}>
-      <View
-        style={{
-          flex: 1,
-
-          backgroundColor: COLORS.lightBlueGrey30,
-        }}>
-        <Space space={20} />
-
-        <View style={{width: '100%', alignItems: 'center'}}>
-          <Txt lineHeight={25} color={COLORS.TextBody}>
-            Your documents are under verification.
-          </Txt>
-        </View>
-
-        <RenderListItems result={result?.Documents} />
+      <Space space={20} />
+      <View style={{width: '100%', alignItems: 'center'}}>
+        <Txt lineHeight={25} color={COLORS.TextBody}>
+          Your documents are under verification.
+        </Txt>
+        {/* <Txt lineHeight={25} color={COLORS.TextBody}>
+          {' '}
+          Please submit these required
+        </Txt>
+        <Txt lineHeight={25} color={COLORS.TextBody}>
+          information and documents bellow to proceed.
+        </Txt> */}
       </View>
+
+      <RenderListItems result={result?.Documents} />
     </ScreensLayout>
   );
 };
@@ -110,7 +111,7 @@ const RenderListItems = ({result}) => {
 
   const firstFour = result?.slice(0, 4);
 
-  // console.log('result-firstFour', result.length)
+// console.log('result-firstFour', result.length)
   // console.log('firstFour', firstFour)
   const Views = () => {
     return firstFour?.map((i, index) => {

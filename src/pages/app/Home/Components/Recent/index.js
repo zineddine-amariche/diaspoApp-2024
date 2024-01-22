@@ -14,7 +14,7 @@ const Recent = ({onPress}) => {
   const {t, i18n} = useTranslation();
 
   const {transactions} = useSelector(state => state.getAllTransactions);
-// 
+// console.log('transactions', transactions)
   // const reversedArray = transactions[0]?.walletAccountTransactions
   //   ?.slice()
   //   .reverse();

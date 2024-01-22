@@ -1,9 +1,9 @@
-import {View, Animated, Modal, StyleSheet, Dimensions} from 'react-native';
-import React from 'react';
+import { View, Animated, Modal, StyleSheet, Dimensions } from "react-native";
+import React from "react";
 
-const {width, height} = Dimensions.get('screen');
+const { width, height } = Dimensions.get("screen");
 
-const FullModal = ({visible, children}) => {
+const FullModal = ({ visible, children }) => {
   const [ShowModal, setShowModal] = React.useState(visible);
 
   const scaleValue = React.useRef(new Animated.Value(0)).current;
@@ -32,7 +32,11 @@ const FullModal = ({visible, children}) => {
     <Modal transparent visible={ShowModal}>
       <View style={styles.modalBackGround}>
         <Animated.View
-          style={[styles.modalContainer, {transform: [{scale: scaleValue}]}]}>
+          style={[
+            styles.modalContainer,
+            { transform: [{ scale: scaleValue }] },
+          ]}
+        >
           {children}
         </Animated.View>
       </View>
@@ -42,21 +46,20 @@ const FullModal = ({visible, children}) => {
 const styles = StyleSheet.create({
   modalBackGround: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalContainer: {
     width: width * 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     elevation: 20,
-    position: 'absolute',
-    borderColor: '#078',
-    overflow: 'hidden',
+    position: "absolute",
+    borderColor: "#078",
+    bottom: 0,
+    overflow: "hidden",
     borderTopLeftRadius: 3,
     borderTopRightRadius: 3,
-    height: '100%',
-    flex: 1,
   },
 });
 

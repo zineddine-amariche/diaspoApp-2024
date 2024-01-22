@@ -6,6 +6,7 @@ import {API_URL_WALLET_DEV, APP_KEY_ID, APP_SECRET_KEY} from '@env';
 
 export const getToken = createAsyncThunk('getToken', async () => {
   let url = `${API_URL_WALLET_DEV}/authentication/oauth2/token/${APP_KEY_ID}/${APP_SECRET_KEY}`;
+
   return axios.get(url).then(res => res.data);
 });
 

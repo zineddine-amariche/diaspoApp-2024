@@ -155,9 +155,9 @@ export function useTransfers() {
   };
   let validationSchemaCode = Yup.object().shape({
     code: Yup.string()
-      .max(6, 'The code is too long - must be 6 characters maximum.')
-      .min(6, 'The code is too short - must be 6 characters maximum.')
-      .required('code is required'),
+      .max(6, 'Le code est trop long - doit être de 6 caractères maximum.')
+      .min(6, 'Le code est trop court - doit être de 6 caractères maximum.')
+      .required('code est requis'),
   });
 
   return {

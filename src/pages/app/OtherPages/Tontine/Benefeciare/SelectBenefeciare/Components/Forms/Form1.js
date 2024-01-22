@@ -247,7 +247,16 @@ const styles = StyleSheet.create({
   },
 });
 
- 
+{
+  /* <CircleCheckBox
+              onPress={() => {
+                // handleOnChange(index, item);
+                // HandelChageGlobale(index,item)
+              }}
+              checked={check[index]}
+              index={index}
+            /> */
+}
 // const dispatch = useDispatch();
 // const [checkedState, setCheckedState] = useState(
 //   new Array(contacts?.length).fill(false)

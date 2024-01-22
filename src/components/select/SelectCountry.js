@@ -14,8 +14,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Head, Txt} from '../utils';
 import * as Animatable from 'react-native-animatable';
 import {COLORS} from '../../theme';
-import { useDispatch } from 'react-redux';
-import { getCCA2 } from '../../redux/Features/authentification/Register/perssistingRegisterInputs';
 
 export default function SelectCountry({
   placeholder,
@@ -49,16 +47,10 @@ export default function SelectCountry({
   const [withFilter, setWithFilter] = useState(true);
   const [withAlphaFilter, setWithAlphaFilter] = useState(false);
   const [withCallingCode, setWithCallingCode] = useState(false);
-  const [callingCode, setCallingCode] = useState('');
-  const dispatch = useDispatch()
-
-
   const onSelect = country => {
     setCountryCode(country.cca2);
     setCountry(country);
-    setCallingCode(country.callingCode[0])
     onChangeFormattedText(country.name, country.cca2);
-    dispatch(getCCA2(country))
   };
   const onClose = () => {
     setVisible(false);
@@ -68,8 +60,6 @@ export default function SelectCountry({
   const handelOpen = () => {
     setVisible(true);
   };
-
-  // console.log('callingCode', callingCode)
 
   //  console.log('selectedNationalityFlag', selectedNationalityFlag)
   //  console.log('countryCode', countryCode)

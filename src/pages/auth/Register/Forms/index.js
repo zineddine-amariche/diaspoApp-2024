@@ -23,7 +23,7 @@ const Form = ({
         flex: 1,
         backgroundColor: '#FFF',
       }}>
-     <MultiStep 
+      <MultiStep
         step={step}
         setStep={setStep}
         navigation={navigation}

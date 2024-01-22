@@ -62,13 +62,7 @@ const ActivityDetails = ({
         )}
       </ViewT1>
 
-      {/* <BottomSheetSelect
-        projectId={projectId}
-        closeSelect={closeSelect}
-        bottomSheetModalRef={bottomSheetModalRef2}
-        navigation={navigation}
-        routeData={routeData}
-      /> */}
+    
       
       <Space space={20} />
     </View>
@@ -169,6 +163,7 @@ const DetailsInformations = ({
                 projectId,
                 routeData,
                 isFirstTime,
+                isNew:false
               });
             }}>
             <Txt fontSize={14} color={COLORS.orangeYellow} lineHeight={20}>
@@ -223,6 +218,8 @@ const DetailsInformations = ({
                 projectId,
                 routeData,
                 title: 'Beneficiaries List',
+                isNew:false
+
               });
             }}
             disabled={routeData?.numberOfBeneficiaries == 0 ? true : false}>

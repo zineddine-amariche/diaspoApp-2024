@@ -59,7 +59,6 @@ const PlacesInput = ({apiKey, onSelect}) => {
         )
         .then(response => {
           if (response.data.predictions.length > 0) {
-            // console.log('response.data', response.data)
             setLoading(false);
             return setResults(response.data.predictions);
           } else if (response.data.predictions.length === 0) {
@@ -120,7 +119,7 @@ const PlacesInput = ({apiKey, onSelect}) => {
           <FlatList
             data={results}
             key={item => item.id}
-            keyExtractor={item => item.place_}
+            keyExtractor={item => item.id}
             renderItem={({item , index}) => (
               <TouchableOpacity
                 onPress={() => handleSelect(item)}

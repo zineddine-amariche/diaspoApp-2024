@@ -9,7 +9,7 @@ export const checkPhoneNumberExists = createAsyncThunk(
     // console.log('user', user)
 
     const {mobileNumber, values, handleSubmit, onPhoneNumberSuccessAction} = object;
-    // console.log('----- mobileNumber', mobileNumber);
+    console.log('----- mobileNumber', mobileNumber);
     try {
       const token = thunkAPI.getState().token.token;
 
@@ -43,8 +43,7 @@ export const checkPhoneNumberExists = createAsyncThunk(
               `${message.status} , ${
                 message.statusDescription == ''
                   ? 'something went wrong'
-                  : message.statusDescription.mobileNumber?message.statusDescription.mobileNumber[0]:message.statusDescription
-
+                  : message.statusDescription
               }`,
             )
           : Toast.show(`${message},something went wrong `);

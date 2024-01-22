@@ -1,18 +1,18 @@
 import {
   Image,
-  ImageBackground,
   Platform,
   SafeAreaView,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {COLORS} from '../../../theme';
+import React from 'react';
+import {COLORS, SIZES} from '../../../theme';
 import {StatusBar} from 'react-native';
-import HeaderContent from './SecondaryHeader';
-import ImgBack from '../../../Assets/Img/bg.png';
+import SecondaryHeader from './SecondaryHeader';
+import ImgBack from '../../../Assets/headerImg/background.png';
 import Spiner from '../../spiner';
-import LinearGradient from 'react-native-linear-gradient';
+import Space from '../../Space';
 
 const ReturnHeader = ({
   children,
@@ -25,33 +25,27 @@ const ReturnHeader = ({
   TextIn,
 }) => {
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={styles.Box}>
-        <ImageBackground
-            style={styles.ImageBackground}
-            source={ImgBack}
-            resizeMode="contain"
-          />
-
-        <LinearGradient
-          start={{x: 1, y: 0}}
-          end={{x: 0, y: 1}}
-          colors={[COLORS.Vert0, COLORS.Vert1]}
-          style={styles.ImageBackground}>
-          <HeaderContent
-            Cancel="Return"
-            goBack={goBack}
-            title={title}
-            sousTitre={sousTitre}
-            Notifications={Notifications}
-            sousTontine={sousTontine}
-            TextIn={TextIn}
-          />
-        </LinearGradient>
-      </SafeAreaView>
-
+    <SafeAreaView style={styles.container}>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
+     
+        <Image
+          style={styles.ImageBackground}
+          source={ImgBack}
+          resizeMode="stretch"
+        />
+        <SecondaryHeader
+          Cancel="Return"
+          goBack={goBack}
+          title={title}
+          sousTitre={sousTitre}
+          Notifications={Notifications}
+          sousTontine={sousTontine}
+          TextIn={TextIn}
+        />
+        <Space space={Platform.OS == "android"?20 :-10}/>
+        
       {Loading ? <Spiner /> : children}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -59,24 +53,17 @@ export default ReturnHeader;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.finished,
+    alignItems: 'center',
     flex: 1,
-
-  },
-  Box: {
-    width: '100%',
-    height: Platform.OS == 'ios' ? 120 : 120,
-    overflow: 'hidden',
-    backgroundColor: COLORS.blueGreen,
-    borderBottomLeftRadius: 18,
-    borderBottomRightRadius: 18,
   },
   ImageBackground: {
-    // top: 0,
-    // left: 0,
-    // right: 0,
-    // bottom: 0,
-    // zIndex: 99,
-    // position: 'absolute',
+    // ...StyleSheet.absoluteFillObject,
+    width: SIZES.width,
+    // height: 170,
+    zIndex: 99,
+     position: 'absolute',
+      top: Platform.OS == 'android' ? -40 : -40,
+    //  top: 0,
   },
 });

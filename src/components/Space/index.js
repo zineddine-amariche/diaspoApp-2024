@@ -2,9 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Txt } from '../utils'
 
-const Space = ({space,style}) => {
+const Space = ({space,backgroundColor}) => {
   return (
-    <View style={{height:space ? space : 10,}}  {...style}>
+    <View style={{height:space ? space : 10,}} >
 
     </View>
       

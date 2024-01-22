@@ -155,6 +155,9 @@ export const MultiStep = ({
   let tab2 = registerPerssisteSlice?.step_B;
   let tab3 = registerPerssisteSlice?.step_C;
 
+  //  console.log('tab1', tab1);
+  //  console.log('tab2', tab2);
+  //  console.log('tab3', tab3);
 
   let formData =
     step === 1
@@ -232,11 +235,7 @@ export const MultiStep = ({
     setIsTouched(true);
     dispatch(get_step_A(values));
     dispatch(activateReturn(isReturns == 1 ? 2 : 1));
-
   };
-
- 
-
 
   const onEmailErrorAction = () => {};
   const onFailedAction = () => {};
@@ -248,9 +247,6 @@ export const MultiStep = ({
     setIsTouchedLanguage(true);
   };
 
-  const CCA2 = useSelector(
-    state => state?.registerPerssisteSlice?.CCA2?.callingCode[0],
-  );
   return (
     <>
       <Formik
@@ -382,7 +378,7 @@ export const MultiStep = ({
                           lastName,
                           email,
                           password,
-                          mobileNumber:`+${CCA2}${mobileNumber}`,
+                          mobileNumber,
                           language,
                           birthDay,
                           deviceToken,
@@ -393,6 +389,7 @@ export const MultiStep = ({
                           },
                           group: 'USER',
                         };
+
                         let object = {
                           obj,
                           onSuccess,
@@ -400,7 +397,6 @@ export const MultiStep = ({
                           onUserExist,
                         };
                         // console.log('obj', obj);
-                        // 
                         dispatch(register(object, navigation));
                       }}
                       loading={isLoading}

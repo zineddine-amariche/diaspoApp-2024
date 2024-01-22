@@ -33,17 +33,17 @@ export function useForgot() {
 
   let validationSchema = Yup.object().shape({
     email_phone: Yup.string()
-      .max(35,'phone number or email is too long - must be 35 characters maximum.',)
-      .required('phone number or email is required')
-      .matches(emailPhoneRegex, 'Must be a valid phone or email number!')
-      .min(10,'phone Number is too short - must be at least 10 characters',),
+      .max(35,'numéro telephone ou email est trop long - doit être de 35 caractères maximum.',)
+      .required('numéro telephone ou email est requis')
+      .matches(emailPhoneRegex, 'Doit être un numéro téléphone ou email valide !')
+      .min(10,'Le Numéro téléphone est trop court - doit comporter au moins 10 caractères.',),
   });
 
   let validationSchemaCode = Yup.object().shape({
     code: Yup.string()
-      .max(6,'The code is too long - must be 6 characters maximum.',)
-      .min(6,'The code is too short - must be 6 characters maximum.',)
-      .required('code is required'),
+      .max(6,'Le code est trop long - doit être de 6 caractères maximum.',)
+      .min(6,'Le code est trop court - doit être de 6 caractères maximum.',)
+      .required('code est requis'),
   });
 
   return {

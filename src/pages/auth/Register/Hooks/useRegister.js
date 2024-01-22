@@ -90,8 +90,7 @@ export function useRegister() {
   let validationSchemaInformation = Yup.object().shape({
     mobileNumber: Yup.string()
       .matches(
-        /^(?:(?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(?:(?:\(?\d{3}\)?[\- ]?)?(?:0[1-9]|[1-9]\d{0,2})[\- ]?\d{3}[\- ]?\d{4}|\d{2}[\- ]?(?:0[1-9]|[1-9]\d{0,2})[\- ]?\d{3}[\- ]?\d{3})$/
-        ,
+        /^(?:(?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(?:(?:\(?\d{3}\)?[\- ]?)?\d{3}[\- ]?\d{4}|\d{2}[\- ]?\d{3}[\- ]?\d{3})$/,
         'Must be a valid phone number!',
       )
       .required('Phone number is required')

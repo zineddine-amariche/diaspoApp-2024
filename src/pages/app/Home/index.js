@@ -1,3 +1,4 @@
+import {StyleSheet} from 'react-native';
 import React, {useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import PrimaryHead from '../../../components/Headers/root/PrimaryHead';
@@ -25,9 +26,7 @@ const Home = ({navigation}) => {
 
   const modalRef = useRef(null);
 
-
   const {object, objectUpdate, objectWallet, heightBottomSheet} = UseHome();
-
   const {informationsUser, isLoading: loader} = useSelector(
     state => state.userInformations,
   );
@@ -40,16 +39,14 @@ const Home = ({navigation}) => {
   let token = user?.AccessToken;
   let userId = user?.userId;
 
-
   const handleCloseModal = () => {
     setTimeout(() => {
-      
       modalRef.current?.close();
     }, 400);
   };
 
   const nav = (to, data) => {
-    handleCloseModal()
+    handleCloseModal();
     navigation.navigate(to, data);
   };
 
@@ -57,8 +54,6 @@ const Home = ({navigation}) => {
     accountId,
     userId,
   };
-
-
 
   const onOpen = () => {
     modalRef.current?.open();
@@ -103,6 +98,20 @@ const Home = ({navigation}) => {
     dispatch(getUserInformations(objec));
   }, [isFocused, token]);
 
+  const onValid = (i, ind, type) => {
+    if (type == 'cashout') {
+      nav('CashOut', {data: i, ind});
+    } else if (type == 'cashin') {
+      nav('TopUp', {data: i, ind});
+    } else {
+      nav('Transfer', {data: i, ind});
+    }
+  };
+
+  const onPressPaySafeCard = (i, ind, type) => {
+    nav('PaySafeCodePin', {data: i, ind});
+  };
+
   return (
     <>
       {isLoading || loader ? (
@@ -116,7 +125,7 @@ const Home = ({navigation}) => {
           />
           <ScrollView>
             <Main navigation={navigation} onPress={onOpen} />
-            <WalletsList onPress={nav}/>
+            <WalletsList onPress={nav} onPressPaySafeCard={onPressPaySafeCard} />
             <Space space={17} />
             <Recent onPress={navHistoryTransaction} />
             <Space space={140} />
@@ -130,10 +139,13 @@ const Home = ({navigation}) => {
             }}
             adjustToContentHeight={false}>
             <ContentRenders
+              slice={4}
+              onPressPaySafeCard={onPressPaySafeCard}
               nav={nav}
               type={'cashin'}
               closeAll={handleCloseModal}
               name={'cashin'}
+              onValid={onValid}
             />
           </Modalize>
         </HomeLayout>
@@ -144,4 +156,6 @@ const Home = ({navigation}) => {
 
 export default Home;
 
+const styles = StyleSheet.create({});
 
+const ContentModalSelectCashout = () => {};

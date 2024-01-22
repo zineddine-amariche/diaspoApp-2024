@@ -84,7 +84,6 @@ const PrimaryInput = ({
             }}
             secureTextEntry={hidePass ? true : false}
             editable={editable}
-            // 
             keyboardType={keyboardType}
             placeholderTextColor={
               placeholderTextColor ? placeholderTextColor : COLORS.silver

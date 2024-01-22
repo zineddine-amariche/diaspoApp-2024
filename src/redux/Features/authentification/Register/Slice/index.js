@@ -39,7 +39,12 @@ export const register = createAsyncThunk(
         message.statusDescription !== ''
       ) {
         Toast.show(`${message.status} , ${message.statusDescription}`);
- 
+        //
+        //  if(message.statusDescription =="User already exists"   ){
+        //
+          //  onUserExist()
+        //
+      //  }
       
       } else if (!message.status) {
         Toast.show(`${message}`);
@@ -73,7 +78,6 @@ const registerSlice = createSlice({
     devicetoken: null,
     deviceOS: null,
     userId: null,
- 
   },
   reducers: {
     resetRegister: state => {
@@ -96,7 +100,6 @@ const registerSlice = createSlice({
     dispatchDeviceOS: (state, action) => {
       state.deviceOS = action.payload;
     },
- 
   },
 
   extraReducers: builder => {
@@ -124,7 +127,7 @@ export const {resetRegister, ClearRegister, dispatchToken, dispatchDeviceOS} =
   registerSlice.actions;
 export default registerSlice.reducer;
 
-export const CCA2 = state => state.register.CCA2;
+
 
 
       // const {onErrorAction} = data;

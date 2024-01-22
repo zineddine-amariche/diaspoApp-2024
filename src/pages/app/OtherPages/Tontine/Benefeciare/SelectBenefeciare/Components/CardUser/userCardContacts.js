@@ -3,6 +3,7 @@ import React from "react";
 import { Head, Txt } from "../../../../../../../../components/utils";
 import { COLORS } from "../../../../../../../../theme";
 import thumbnailPath from "../../../../../../../../Assets/Img/ContactsUser.png";
+import CircleCheckBox from "../../../../../../../../components/checkBox/useCircleCheckBox";
 import UseCheckBoxElements from "../../../../../../../../components/checkBox/useCheckBoxElements";
 
 const UserCardContacts = ({

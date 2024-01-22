@@ -1,11 +1,19 @@
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useRef} from 'react';
+import PrimaryInput from '../../../../../components/Input';
+import DropDown from '../../../../../components/select/DropDown';
 import {COLORS} from '../../../../../theme';
 import {useState} from 'react';
+import {useRegister} from '../../Hooks/useRegister';
+import {PrimaryButtonLinear} from '../../../../../components/Buttons';
 import {useSelector} from 'react-redux';
+import ViewT1 from '../../../../../components/views/CardViewType1';
+import {Formik} from 'formik';
+import AcceptTerms from './AcceptTerms';
 import Space from '../../../../../components/Space';
 import InputPhone from '../../../../../components/Input/PhoneInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CustomPhoneInpute from '../../../../../components/Input/CustomPhoneInput';
 
  
 
@@ -69,14 +77,15 @@ const FormInputs = ({
   values,
   setFieldValue,
   errors,
+  handleChange,
   touched,
   handleBlur,
   step,
   setValues,
   dirty,
-  handleChange
+  setIsTouchedLanguage
 }) => {
-  const {mobileNumber} = values;
+  const {mobileNumber, language} = values;
 
   // console.log('firvaluesst', values)
 
@@ -117,19 +126,13 @@ const FormInputs = ({
     }
   }, [step, dirty]);
 
-
-
-
-
   return (
     <>
       <InputPhone
-        // onChangeFormattedText={text => {
-        //   setFormattedValue(text);
-        //   setFieldValue('mobileNumber', text);
-        // }}
-        onChangeText={handleChange('mobileNumber')}
-
+        onChangeFormattedText={text => {
+          setFormattedValue(text);
+          setFieldValue('mobileNumber', text);
+        }}
         name={'mobileNumber'}
         Label={'Phone number'}
         // placeholder="Your Phone number"

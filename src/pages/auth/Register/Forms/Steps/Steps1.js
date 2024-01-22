@@ -1,4 +1,11 @@
-import {StyleSheet, View} from 'react-native';
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from 'react-native';
 import React, {useEffect} from 'react';
 import PrimaryInput from '../../../../../components/Input';
 import CustomDatePiker from '../../../../../components/DatePiker';
@@ -7,9 +14,14 @@ import {COLORS} from '../../../../../theme';
 import {useState} from 'react';
 import Space from '../../../../../components/Space';
 import * as ImagePicker from 'react-native-image-picker';
-
+import avatar from '../../../../../Assets/Img/avatar.png';
+import icon16CameraPlus from '../../../../../Assets/Img/icon16CameraPlus.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  checkEmailExists,
+  selectEmailExistsStatus,
+} from '../../../../../redux/Features/authentification/Register/emailExistsSlice';
 
 const Step1 = ({
   step,
@@ -27,21 +39,21 @@ const Step1 = ({
   dirty,
 }) => {
   return (
-    <FormInputs
-      setFieldValue={setFieldValue}
-      handleChange={handleChange}
-      handleBlur={handleBlur}
-      touched={touched}
-      values={values}
-      errors={errors}
-      IsTouched={IsTouched}
-      setIsTouched={setIsTouched}
-      IsBirthDay={IsBirthDay}
-      setIsBirthDay={setIsBirthDay}
-      step={step}
-      setValues={setValues}
-      dirty={dirty}
-    />
+      <FormInputs
+        setFieldValue={setFieldValue}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        touched={touched}
+        values={values}
+        errors={errors}
+        IsTouched={IsTouched}
+        setIsTouched={setIsTouched}
+        IsBirthDay={IsBirthDay}
+        setIsBirthDay={setIsBirthDay}
+        step={step}
+        setValues={setValues}
+        dirty={dirty}
+      />
   );
 };
 
@@ -64,6 +76,8 @@ const FormInputs = ({
     firstName,
     lastName,
     email,
+    birthDay, //
+    nationality, //
   } = values;
 
   const [fileUri, setFileUri] = useState('');
@@ -87,8 +101,6 @@ const FormInputs = ({
   const isReturns = useSelector(
     state => state.registerPerssisteSlice.isReturns,
   );
-
-
 
   useEffect(() => {
     if (step == 1 && isReturns === 1) {
@@ -204,8 +216,6 @@ const FormInputs = ({
           onChangeFormattedText={(text, flag) => {
             setFieldValue('nationality', text);
             setFieldValue('nationalityFlagName', flag);
-            console.log('flag', flag);
-            console.log('text', text);
           }}
           touched={IsTouched}
           setIsTouched={setIsTouched}

@@ -1,30 +1,37 @@
-import React from "react";
-import ImgBack from "../../../../Assets/Img/HomeBack.png";
+import React from 'react';
+import ImgBack from '../../../../Assets/Img/HomeBack.png';
 import {
   Image,
-  ImageBackground,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  View,
-} from "react-native";
-import { COLORS, SIZES } from "../../../../theme";
-const WalletLayout = ({ children }) => {
+} from 'react-native';
+import {COLORS, SIZES} from '../../../../theme';
+import Space from '../../../Space';
+import Spiner from '../../../../components/spiner';
+
+const WalletLayout = ({children, isLoading}) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar translucent={true} backgroundColor={"transparent"} />
+    <>
+      {isLoading ? (
+        <Spiner />
+      ) : (
+        <SafeAreaView style={styles.container}>
+          <StatusBar translucent={true} backgroundColor={'transparent'} />
 
-      <Image
-        style={styles.ImageBackground}
-        source={ImgBack}
-        resizeMode="stretch"
-      />
-
-      {children}
-    </SafeAreaView>
+          <Image
+            style={styles.ImageBackground}
+            source={ImgBack}
+            resizeMode="stretch"
+          />
+          <Space space={Platform.OS == 'android' ? 40 : 30} />
+          {children}
+        </SafeAreaView>
+      )}
+    </>
   );
 };
-
 export default WalletLayout;
 
 const styles = StyleSheet.create({
@@ -33,9 +40,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.paleGrey,
   },
   ImageBackground: {
-    ...StyleSheet.absoluteFillObject,
     width: SIZES.width,
-    height:170
-  
+    height: Platform.OS == 'android' ? 190 : 220,
+    zIndex: 99,
+    position: 'absolute',
+    top: Platform.OS == 'android' ? -40 : -40,
   },
 });

@@ -11,30 +11,16 @@ const SquareCheckBox = ({
   style,
   size,
   borderWidth,
-  fontSize,
-  color,
-  borderColor,
-  backgroundColor
+  fontSize
   
 }) => {
-  console.log('checked', checked)
-  console.log('borderWidth', borderWidth)
-  console.log('first', borderColor)
   return (
     <TouchableOpacity style={styles.container} {...style} onPress={onPress}>
       {checked ? (
         <TouchableOpacity onPress={onPress}
-        // style={styles.box}
-        style={{
-          maxHeight: size || 15,
-          width: size || 15,
-          backgroundColor:  "#eee",
-          borderWidth: borderWidth || 1.5,
-          borderColor:borderColor?borderColor: COLORS.greyblue,
-        }}
-        >
+        style={styles.box}>
         
-            <Image source={check2}  resizeMode="contain" style={{height:"100%" ,width:"100%"}}  />
+            <Image source={check2}   />
       
         </TouchableOpacity>
       ) : (
@@ -44,11 +30,11 @@ const SquareCheckBox = ({
 
         <View
           style={{
-            minHeight: size || 15,
+            height: size || 15,
             width: size || 15,
-            backgroundColor: backgroundColor?backgroundColor:"#eee",
+            backgroundColor: "#eee",
             borderWidth: borderWidth || 1.5,
-            borderColor:borderColor?borderColor: COLORS.greyblue,
+            borderColor: COLORS.greyblue,
             margin:6,
           }}
         />
@@ -56,7 +42,7 @@ const SquareCheckBox = ({
 
       )}
 
-      <Txt color={color?color:COLORS.darkBlueGrey} style={styles.title} lineHeight={35}  fontSize={fontSize?fontSize:14}>
+      <Txt color={COLORS.darkBlueGrey} style={styles.title} lineHeight={35}  fontSize={fontSize?fontSize:14}>
         {title}
       </Txt>
     </TouchableOpacity>
@@ -69,17 +55,14 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flexDirection: "row",
-    marginTop:10
   },
   title: {
     marginLeft: 10,
   },
   box:{
-    width:25,
-    height:25,
+    width:20,
+    height:20,
     alignItems:"center",
-    justifyContent:'center',
-  
- 
+    justifyContent:'center'
   }
 });

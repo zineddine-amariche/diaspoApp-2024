@@ -6,25 +6,23 @@ import {COLORS} from '../../../../../theme';
 import Space from '../../../../../components/Space';
 import {WhiteButton} from '../../../../../components/Buttons';
 import {useDispatch, useSelector} from 'react-redux';
-import Toast from 'react-native-simple-toast';
 import Intl from 'intl';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 import {getBalance} from '../../../../../redux/Features/Payements/getPayementMethods/slice';
 
-const ContentRenders = ({nav, type, name, closeAll}) => {
+const ContentRenders = ({onPressPaySafeCard, type, name, closeAll, slice, onValid}) => {
   const {walletAccount} = useSelector(state => state.walletAccounts);
 
   const dispatch = useDispatch();
-  let dataV = walletAccount?.walletAccounts?.slice(0, 2);
-
+  let dataV = walletAccount?.walletAccounts?.slice(0, slice);
   return (
     <>
       <View
         style={{
           backgroundColor: COLORS.white,
           paddingHorizontal: 16,
-          marginTop:20
+          marginTop: 20,
         }}>
         <Head style={styles.Head}>Select an account to {name}</Head>
         {walletAccount ? (
@@ -39,30 +37,19 @@ const ContentRenders = ({nav, type, name, closeAll}) => {
                 <TouchableOpacity
                   key={ind}
                   onPress={() => {
-                     dispatch(getBalance(i.balance));
-                     if (type == 'cashout') {
-                       nav('CashOut', {data: i});
-                     } else if (type == 'cashin') {
-                       nav('TopUp', {data: i});
-                     } else {
-                       nav('Transfer', {data: i});
-                     }
-                    // console.log('i', i.balance)
-                  }}
-                  // disabled={i.accountType == 'tontine' ? true : false}
-                  
-                  >
+                    dispatch(getBalance(i.balance));
+                    if (ind == 2) {
+                      onPressPaySafeCard(i, ind, type)
+                    } else {
+                      onValid(i, ind, type);
+                    }
+                  }}>
                   <View
                     spaceBetween
                     style={[
                       styles.item,
                       {
-                        // backgroundColor:
-                        //   i.accountType == 'tontine'
-                        //     ? COLORS.opacity1
-                        //     : COLORS.paleGreyTwo,
-                        backgroundColor:COLORS.paleGreyTwo
-
+                        backgroundColor: COLORS.paleGreyTwo,
                       },
                     ]}>
                     <HView>
@@ -70,11 +57,7 @@ const ContentRenders = ({nav, type, name, closeAll}) => {
                         style={[
                           styles.Point,
                           {
-                            // backgroundColor:
-                            //   i.accountType == 'tontine'
-                            //     ? COLORS.gray
-                            //     : COLORS.orangeYellow,
-                                backgroundColor:COLORS.orangeYellow,
+                            backgroundColor: COLORS.orangeYellow,
                           },
                         ]}></View>
                       <Txt
@@ -84,16 +67,15 @@ const ContentRenders = ({nav, type, name, closeAll}) => {
                         //     ? COLORS.gray
                         //     : COLORS.orangeYellow
                         // }
-                        
 
-                        color={COLORS.orangeYellow}
-                        
-                        >
-                       {i.name == 'Main Account'
-                  ? 'Bongo account'
-                  : ind == 1
-                  ? 'Second account'
-                  : i.name}
+                        color={COLORS.orangeYellow}>
+                        {i.name == 'Main Account'
+                          ? 'Smile Account'
+                          : ind == 1
+                          ? 'Tontine Account'
+                          : ind == 2
+                          ? 'PaysafeCard'
+                          : 'Paypal'}
                       </Txt>
                     </HView>
                     <View>
@@ -129,17 +111,19 @@ const ContentRenders = ({nav, type, name, closeAll}) => {
             })}
           </ScrollView>
         ) : (
-          <View style={{flexGrow: 1,padding:30,alignItems:"center",height:200,justifyContent:"center"}}>
+          <View
+            style={{
+              flexGrow: 1,
+              padding: 30,
+              alignItems: 'center',
+              height: 200,
+              justifyContent: 'center',
+            }}>
             <Txt>no data</Txt>
           </View>
         )}
 
-        <WhiteButton
-          onPress={() => {
-            closeAll();
-          }}>
-          cancel
-        </WhiteButton>
+        <WhiteButton onPress={closeAll}>cancel</WhiteButton>
         <Space space={90} />
       </View>
     </>

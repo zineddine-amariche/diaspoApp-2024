@@ -79,21 +79,7 @@ export const PrimaryButton = ({
           )}
         </LinearGradient>
       </TouchableOpacity>
-      {Platform.OS !== 'ios' ? (
-        <Space
-          space={20}
-          style={{
-            backgroundColor: COLORS.lightBlueGrey30,
-          }}
-        />
-      ) : (
-        <Space
-          space={25}
-          style={{
-            backgroundColor: COLORS.lightBlueGrey30,
-          }}
-        />
-      )}
+      {Platform.OS !== 'ios' ? <Space space={20} /> : null}
     </>
   );
 };
@@ -114,7 +100,6 @@ export const PrimaryButtonLinear = ({
   textTransform,
   paddingRight,
   addbank,
-  gap,
 }) => {
   const hoverRef = useRef(null);
 
@@ -166,28 +151,12 @@ export const PrimaryButtonLinear = ({
                 textTransform={textTransform}>
                 {children}
               </Txt>
-              <Image source={addbank} style={{marginBottom: 3}} />
+              <Image source={addbank} style={{marginBottom:3}}/>
             </View>
           )}
         </LinearGradient>
       </TouchableOpacity>
-      {Platform.OS !== 'ios'
-        ? gap && (
-            <Space
-              space={20}
-              style={{
-                backgroundColor: COLORS.lightBlueGrey30,
-              }}
-            />
-          )
-        : gap && (
-            <Space
-              space={25}
-              style={{
-                backgroundColor: COLORS.lightBlueGrey30,
-              }}
-            />
-          )}
+      {/* {Platform.OS == 'ios' ? <Space space={20} /> : null} */}
     </>
   );
 };
@@ -467,23 +436,22 @@ export const PaleLockedButton = ({
   style,
   onPress,
   width,
+  isHovered,
   opacity,
   Bold,
   loading,
+  condition,
   disable,
   height,
   isLocked,
   paddingRight,
-  gap
 }) => {
   const hoverRef = useRef(null);
 
+  console.log('paddingRight', paddingRight);
 
   let src = isLocked ? locked : unlocked;
   return (
-
-    <>
-    
     <TouchableOpacity
       disabled={disable}
       ref={hoverRef}
@@ -518,25 +486,6 @@ export const PaleLockedButton = ({
         </View>
       )}
     </TouchableOpacity>
-    {Platform.OS !== 'ios'
-    ? gap && (
-        <Space
-          space={20}
-          style={{
-            backgroundColor: COLORS.lightBlueGrey30,
-          }}
-        />
-      )
-    : gap && (
-        <Space
-          space={25}
-          style={{
-            backgroundColor: COLORS.lightBlueGrey30,
-          }}
-        />
-      )}
-    </>
-
   );
 };
 const styles = StyleSheet.create({

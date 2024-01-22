@@ -192,9 +192,8 @@ const EWalletAccounts = ({navigation, route}) => {
         <Note />
       </View> */}
 
-      <View style={{width: '100%', paddingVertical: 20, alignItems:'center' }}>
+      <View style={{width: '90%', paddingTop: 20}}>
         <PrimaryButtonLinear
-        width={"90%"}
           disabled={true}
           onPress={() => {
             // handleSubmit();

@@ -61,6 +61,8 @@ import CreditsCardsBankAccounts from '../../../pages/app/Wallet/Pages/CreditsCar
 import BankCards from '../../../pages/app/Wallet/Pages/BankCards';
 import PayersLayout from '../../../pages/app/OtherPages/Tontine/Layouts/PayersLayout';
 import BenefeLayout from '../../../pages/app/OtherPages/Tontine/Layouts/BenefeLayout';
+import PaySafeCodePin from '../../../pages/app/Home/pages/PaySafeCodePin';
+import ChooseVoucher from '../../../pages/app/Home/pages/ChooseVoucher';
 
 const Drawer = createDrawerNavigator();
 
@@ -96,6 +98,7 @@ const DrawerScreen = props => {
       }}
       drawerContent={props => <DrawerContent {...props} />}>
       <Drawer.Screen name="DiaspoBottomTab" component={BottomTabOrange} />
+
       <Drawer.Screen name="Home" component={Home} {...props} />
       <Drawer.Screen name="Scann" component={Scann} {...props} />
       <Drawer.Screen name="TopUp" component={TopUp} {...props} />
@@ -129,6 +132,9 @@ const DrawerScreen = props => {
       <Drawer.Screen name="CreditsCardsTontine" component={CreditsCardsTontine} {...props} />
       <Drawer.Screen name="CreditsCardsBankAccounts" component={CreditsCardsBankAccounts} {...props} />
       <Drawer.Screen name="BankCards" component={BankCards} {...props} />
+      <Drawer.Screen name="PaySafeCodePin" component={PaySafeCodePin} {...props} />
+      <Drawer.Screen name="ChooseVoucher" component={ChooseVoucher} {...props} />
+      
       
       
       

@@ -76,6 +76,8 @@ export function UseBenef() {
         projectId,
         routeData, // i get this value from : server
         title: titree,
+        isNew:true
+
       });
       dispatch(resetBeneficiaries());
       dispatch(deleteSelectedList());

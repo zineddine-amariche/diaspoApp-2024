@@ -1,10 +1,13 @@
 import {
   ActivityIndicator,
+  Alert,
   Image,
   ImageBackground,
+  Linking,
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Text,
   View,
 } from "react-native";
 import React from "react";
@@ -12,6 +15,7 @@ import background from "../../../Assets/Img/background2.png";
 import logo from "../../../Assets/Img/logo.png";
 import { Txt } from "../../../components/utils";
 import { COLORS } from "../../../theme";
+import Line from "../../../components/views/line";
 
 
 const SplashScreen = () => {
@@ -38,6 +42,9 @@ const SplashScreen = () => {
           color={COLORS.white}
         ></ActivityIndicator>
       </View>
+      {/* <View style={{position:"absolute", bottom:10}}>
+        <Line />
+      </View> */}
     </SafeAreaView>
   );
 };

@@ -174,7 +174,7 @@ const Form1 = ({handleNextForm}) => {
                       textAlign: 'center',
                       paddingLeft: 10,
                     }}>
-                    {'  '} Send OTP in {Counter === 0 ? null : Counter} seconds
+                    {'  '} Resend OTP {Counter === 0 ? null : Counter}
                   </Txt>
                 </TouchableOpacity>
                 <View style={styles.space}></View>

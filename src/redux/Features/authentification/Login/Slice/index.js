@@ -16,8 +16,7 @@ export const login = createAsyncThunk(
       let data = await loginService.api(user, token);
       // console.log('00ta', data.data);
       if (data.status === 'success') {
-        
-          if (data.data.UserKycDetails?.kycStatus == 'NO_KYC') {
+        if (data.data.UserKycDetails?.kycStatus == 'NO_KYC') {
           navtokyc(data.data.userId);
         } else if (data.data.UserKycDetails?.kycStatus == 'PENDING_REVIEW') {
           navtoReview('PENDING_REVIEW', data.data);

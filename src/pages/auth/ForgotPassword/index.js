@@ -58,7 +58,7 @@ const Forgot = ({navigation, navigation: {goBack}}) => {
 
   return (
     <AuthLayout
-      Title={'forgotten password?'}
+      Title={'Forgot your password'}
       goBack={() => {
         goBack();
         setCurrentStep(0);

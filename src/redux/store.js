@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import TokenSlice from "./Features/AppToken/GetToken";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
-import TokenSlice from "./Features/AppToken/GetToken";
 import Languages from "./Features/Language/Slice/index.js";
 import loginSlice from "./Features/authentification/Login/Slice";
 import codeConfirmSlice from "./Features/ConfirmAccount/CodeSlice";
@@ -43,8 +43,7 @@ import emailExistsSlice from "./Features/authentification/Register/emailExistsSl
 import CreateEwalletsSlice from "./Features/CreateWallets/slice"
 import emailForgotExistsSlice from './Features/authentification/ForgotPass/emailExistsSlice'
 import payementsMethodSlice from './Features/Payements/getPayementMethods/slice'
-import GlobaleState from './App'
-
+import PaySafeCardSlice from './Features/Global/PaysafeCard'
 const reducers = combineReducers({
   token: TokenSlice,
   auth: loginSlice,
@@ -86,7 +85,7 @@ const reducers = combineReducers({
   CreateEwalletsSlice,
   forgotEmail:emailForgotExistsSlice,
   payementsMethodSlice,
-  App:GlobaleState
+  PaySafeCard:PaySafeCardSlice
 });
 
 const persistConfig = {
@@ -99,7 +98,6 @@ const persistConfig = {
     "contacts",
     "payersList",
     "walletAccounts",
-    "App"
   ],
   // whitelist: [],
 };

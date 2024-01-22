@@ -6,7 +6,6 @@ const API_URL = `${API_URL_WALLET_DEV}/registration/users/email/exists`;
 //   "https://wallet-gateway-svc-x6fr3lwlgq-nw.a.run.app/v1/registration/users/email/exists";
 
 //  !register user api
-console.log('API_URL_WALLET_DEV', API_URL_WALLET_DEV)
 
 const api = async (email, token) => {
   const config = {

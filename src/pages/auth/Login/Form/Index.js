@@ -132,7 +132,7 @@ const Form = ({navigation}) => {
                   onPress={() => {
                     navigation.navigate('Forgot');
                   }}>
-                  <Txt color={COLORS.yellow}>forgotten password?</Txt>
+                  <Txt color={COLORS.yellow}>Forgot your password</Txt>
                 </TouchableOpacity>
 
                 <Space space={30} />

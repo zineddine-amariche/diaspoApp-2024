@@ -15,14 +15,14 @@ import {useSelector} from 'react-redux';
 import Tooltip from 'react-native-walkthrough-tooltip';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Intl from 'intl';
+import Toast from 'react-native-simple-toast';
 
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 
-const AccountsBox = ({onPress}) => {
+const AccountsBox = ({onPress,onPressPaySafeCard}) => {
   const {walletAccount} = useSelector(state => state.walletAccounts);
-  // console.log('-', walletAccount.walletAccounts.map((i)=>{return i}))
-  let dataV = walletAccount?.walletAccounts?.slice(0, 2);
+  let dataV = walletAccount?.walletAccounts?.slice(0, 4);
   return (
     <>
       <MyTooltip />
@@ -37,7 +37,7 @@ const AccountsBox = ({onPress}) => {
         {dataV?.map((i, ind) => {
           return (
             <View key={ind} style={{marginBottom: 3}}>
-              <RenderItems item={i} ind={ind} onPress={onPress} />
+              <RenderItems item={i} ind={ind} onPress={onPress}  onPressPaySafeCard={onPressPaySafeCard} />
             </View>
           );
         })}
@@ -48,7 +48,7 @@ const AccountsBox = ({onPress}) => {
 
 export default AccountsBox;
 
-const RenderItems = ({ind, item,onPress}) => {
+const RenderItems = ({ind, item,onPressPaySafeCard, onPress}) => {
   const {t, i18n} = useTranslation();
 
   if (typeof Intl === 'undefined') {
@@ -64,8 +64,6 @@ const RenderItems = ({ind, item,onPress}) => {
     maximumFractionDigits: 2,
   }).format(item?.balance / 100);
 
-
-  // console.log('item.name ', item.name )
   return (
     <>
       <View style={styles.container}>
@@ -74,11 +72,19 @@ const RenderItems = ({ind, item,onPress}) => {
             <HView>
               <View style={styles.Point}></View>
               <Txt fontSize={17} color={COLORS.orangeYellow}>
-                {item.name == 'Main account Notify'
+                {/* {item.name == 'Main Account'
                   ? 'Bongo account'
                   : ind == 1
                   ? 'Second account'
-                  : item.name}
+                  : item.name} */}
+
+                {item.name == 'Main Account'
+                  ? 'Smile Account'
+                  : ind == 1
+                  ? 'Tontine Account'
+                  : ind == 2
+                  ? 'PaysafeCard'
+                  : 'Paypal'}
               </Txt>
             </HView>
             <HView>
@@ -101,8 +107,12 @@ const RenderItems = ({ind, item,onPress}) => {
             onPress={() => {
               // console.log('item', item);
               // onPress('CashOut', {data: item});
-              onPress('TopUp', {data: item});
 
+              if (ind == 2) {
+                onPressPaySafeCard(item, ind, "type")
+              } else {
+                onPress('TopUp', {data: item});
+              }
             }}>
             <View
               style={[

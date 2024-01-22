@@ -15,26 +15,16 @@ Gem::Specification.new do |s|
   s.files = ["README.rdoc".freeze]
   s.homepage = "https://github.com/ckruse/CFPropertyList".freeze
   s.licenses = ["MIT".freeze]
-  s.rubygems_version = "3.1.6".freeze
+  s.rubygems_version = "3.4.7".freeze
   s.summary = "Read, write and manipulate both binary and XML property lists as defined by apple".freeze
 
-  s.installed_by_version = "3.1.6" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.4.7" if s.respond_to? :installed_by_version
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 4
-  end
+  s.specification_version = 4
 
-  if s.respond_to? :add_runtime_dependency then
-    s.add_runtime_dependency(%q<rexml>.freeze, [">= 0"])
-    s.add_development_dependency(%q<libxml-ruby>.freeze, [">= 0"])
-    s.add_development_dependency(%q<minitest>.freeze, [">= 0"])
-    s.add_development_dependency(%q<nokogiri>.freeze, [">= 0"])
-    s.add_development_dependency(%q<rake>.freeze, [">= 0.7.0"])
-  else
-    s.add_dependency(%q<rexml>.freeze, [">= 0"])
-    s.add_dependency(%q<libxml-ruby>.freeze, [">= 0"])
-    s.add_dependency(%q<minitest>.freeze, [">= 0"])
-    s.add_dependency(%q<nokogiri>.freeze, [">= 0"])
-    s.add_dependency(%q<rake>.freeze, [">= 0.7.0"])
-  end
+  s.add_runtime_dependency(%q<rexml>.freeze, [">= 0"])
+  s.add_development_dependency(%q<libxml-ruby>.freeze, [">= 0"])
+  s.add_development_dependency(%q<minitest>.freeze, [">= 0"])
+  s.add_development_dependency(%q<nokogiri>.freeze, [">= 0"])
+  s.add_development_dependency(%q<rake>.freeze, [">= 0.7.0"])
 end

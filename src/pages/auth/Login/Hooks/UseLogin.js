@@ -14,9 +14,6 @@ export function useLogin() {
   const initialValues = {
     userName: "trop@yopmail.com",
     userPassword: '@Zinou12345',
-
-    // userName: "ff@yopmail.com",
-    // userPassword:'@Azerty123'
     //
     //
     // userName: '',

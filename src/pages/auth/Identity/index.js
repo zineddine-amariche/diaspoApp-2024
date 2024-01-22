@@ -55,7 +55,6 @@ const Identity = ({navigation}) => {
             flex: 1,
             backgroundColor: COLORS.white,
             alignItems: 'center',
-            paddingTop:40
           }}>
           <StatusBar translucent={true} backgroundColor={'transparent'} />
           <WhiteHeader

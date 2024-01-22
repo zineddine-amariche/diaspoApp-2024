@@ -96,11 +96,9 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     width: '100%',
-    // paddingTop: Platform.OS == 'ios' ? 5 : 50,
+    paddingTop: Platform.OS == 'ios' ? 5 : 50,
     // paddingBottom: Platform.OS == 'ios' ? 20 : 30,
     zIndex: 999,
-    position:"absolute",
-    top:60
   },
   button: {
     paddingRight: 15,

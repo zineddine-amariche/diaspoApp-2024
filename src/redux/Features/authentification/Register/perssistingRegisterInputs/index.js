@@ -7,7 +7,6 @@ const registerPerssisteSlice = createSlice({
     step_A: [],
     step_B: [],
     step_C: [],
-    CCA2: null,
     // step_D: [],
   },
   reducers: {
@@ -23,10 +22,6 @@ const registerPerssisteSlice = createSlice({
     get_step_C: (state, action) => {
       state.step_C = action.payload;
     },
- 
-    getCCA2: (state, action) => {
-      state.CCA2 = action.payload;
-    }
     // get_step_D: (state, action) => {
     //   state.step_D = action.payload;
     // },
@@ -35,6 +30,6 @@ const registerPerssisteSlice = createSlice({
   extraReducers: builder => {},
 });
 
-export const {activateReturn, get_step_A,getCCA2, get_step_B, get_step_C, get_step_D} =
+export const {activateReturn, get_step_A, get_step_B, get_step_C, get_step_D} =
   registerPerssisteSlice.actions;
 export default registerPerssisteSlice.reducer;

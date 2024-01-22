@@ -20,19 +20,19 @@ import DropDown from '../../../../../components/select/DropDown';
 const data2 = [
   {
     color: COLORS.grayIcon,
-    label: 'Passport',
+    label: 'PASSPORT',
     value: 'PASSPORT',
     icon: 'minus',
   },
   {
     color: COLORS.grayIcon,
-    label: 'Driving licence',
+    label: 'DRIVING_LICENSE',
     value: 'DRIVING_LICENSE',
     icon: 'minus',
   },
   {
     color: COLORS.grayIcon,
-    label: 'ID Card',
+    label: 'CARD_ID',
     value: 'CARD_ID',
     icon: 'minus',
   },

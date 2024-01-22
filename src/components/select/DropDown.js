@@ -41,8 +41,6 @@ const DropDown = ({
   // console.log('value?.label', value?.label);
   // console.log('colorScheme', colorScheme);
   // console.log('value', value);
-
-let display = value == 'PHOTO_CARD' ? 'not selected ...' : ''
   return (
     <>
       {label ? <Head style={styles.title}>{label}</Head> : null}
@@ -64,7 +62,7 @@ let display = value == 'PHOTO_CARD' ? 'not selected ...' : ''
                 <Txt
                   Bold="700"
                   color={colorScheme == 'dark' ? COLORS.silver : COLORS.dark}>
-                  {value.label ? value?.label : display}
+                  {value.label ? value?.label : value.toString()}
                 </Txt>
               </View>
             ) : (
