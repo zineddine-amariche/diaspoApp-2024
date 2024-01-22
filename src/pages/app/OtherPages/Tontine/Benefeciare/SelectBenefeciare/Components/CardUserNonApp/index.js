@@ -4,7 +4,6 @@ import { Head, Txt } from "../../../../../../../../components/utils";
 import { COLORS } from "../../../../../../../../theme";
 import thumbnailPath from "../../../../../../../../Assets/Img/icon24Edit.png";
 import icon24TrashBin from "../../../../../../../../Assets/Img/icon24TrashBin.png";
-import CircleCheckBox from "../../../../../../../../components/checkBox/useCircleCheckBox";
 import HView from "../../../../../../../../components/views/HView/HView";
 import UseCheckBoxElements from "../../../../../../../../components/checkBox/useCheckBoxElements";
 
@@ -64,15 +63,6 @@ const CardUserNonApp = ({
                   : item?.phoneNumbers[0]?.number}
               </Txt>
             </View>
-            {/* <CircleCheckBox
-              onPress={() => {
-                // handleOnChange(index, item);
-                // HandelChageGlobale(index,item)
-              }}
-              checked={check[index]}
-              index={index}
-            /> */}
-
             <UseCheckBoxElements index={index} isCheck={item.checked} />
           </HView>
         </TouchableOpacity>

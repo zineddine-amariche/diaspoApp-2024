@@ -1,14 +1,17 @@
 import React, {useCallback, useRef, useState} from 'react';
 import {
   StyleSheet,
- 
+  SafeAreaView,
+  StatusBar,
   Image,
   ScrollView,
 } from 'react-native';
 
- 
+import ImgBack from '../../../../../Assets/Img/HomeBack.png';
+import SecondaryHeader from '../../../../../components/Headers/root/SecondaryHeader';
 import Space from '../../../../../components/Space';
 import {COLORS, SIZES} from '../../../../../theme';
+import cart2 from '../../../../../Assets/Img/carte2.png';
 import ImageInfo from '../../../../../Assets/Img/icon24Info.png';
 
 import {
@@ -30,11 +33,11 @@ import EWalletq from '../../../../../Assets/VISA/pos-payments.png';
 import Toast from 'react-native-simple-toast';
 import {Modalize} from 'react-native-modalize';
 import ReturnHeader from '../../../../../components/Headers/root/ReturnHeader';
-import cart2 from '../../../../../Assets/Img/moneyTrans2.png';
+
+const CreditsCards = ({navigation,route}) => {
 
 
-const CreditsCards = ({navigation, route}) => {
-  const {title} = route.params;
+  const {title} = route.params
   const bottomSheetModalRef2 = useRef(null);
   const modalRef = useRef(null);
 
@@ -70,99 +73,105 @@ const CreditsCards = ({navigation, route}) => {
       title={title}
       sousTitre={`1 card connected`}
       Cancel="Return">
-      <Space space={30} />
-      <ScrollView contentContainerStyle={{width: SIZES.width}}>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            width: '100%',
-            backgroundColor: COLORS.finished,
-          }}>
-          <>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={{
-                width: '90%',
-                borderRadius: 16,
-                overflow: 'hidden',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={cart2}
-                style={{  overflow: 'hidden'}}
-                resizeMode="stretch"
-              />
-            </TouchableOpacity>
-            <Space space={20} />
-            {!islocked ? (
-              <RenderListVisa />
-            ) : (
-              <View style={{paddingTop: 90}}>
-                <Txt color={COLORS.coral}> Your card is locked</Txt>
-              </View>
-            )}
-          </>
-          <Space space={40} />
-          <View style={{width: '100%', alignItems: 'center'}}>
-            {!islocked ? (
-              <PrimaryButtonLinear
-                width={'90%'}
-                disabled={true}
-                textTransform="uppercase"
-                onPress={() => {
-                  // navigation.navigate('CreateCard');
-                  onOpen();
-                }}>
-                Display my pin code
-              </PrimaryButtonLinear>
-            ) : null}
-            <Space space={10} />
+<ScrollView contentContainerStyle={{width:SIZES.width}} >
 
-            <PaleLockedButton
-              isLocked={islocked}
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          width: '100%',
+          marginTop:10,
+          backgroundColor: COLORS.finished,
+        }}>
+        <>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={{
+              backgroundColor: '#1112',
+              width: '90%',
+              borderRadius: 16,
+              overflow: 'hidden',
+              alignItems: 'center',
+            }}>
+            <Image source={cart2} style={{width: '100%', overflow: 'hidden'}} />
+          </TouchableOpacity>
+          <Space space={20} />
+          {!islocked ? (
+            <RenderListVisa />
+          ) : (
+            <View style={{paddingTop: 90}}>
+              <Txt color={COLORS.coral}> Your card is locked</Txt>
+            </View>
+          )}
+        </>
+        <Space space={40} />
+        <View style={{width: '100%', alignItems: 'center'}}>
+          {!islocked ? (
+            <PrimaryButtonLinear
               width={'90%'}
-              style={{}}
               disabled={true}
               textTransform="uppercase"
               onPress={() => {
                 // navigation.navigate('CreateCard');
-                setislocked(!islocked);
+                onOpen();
               }}>
-              {islocked ? 'unLock the card' : 'lock the card'}
-            </PaleLockedButton>
-          </View>
+              Display my pin code
+            </PrimaryButtonLinear>
+          ) : null}
+          <Space space={10} />
+
+          <PaleLockedButton
+          gap
+            isLocked={islocked}
+            width={'90%'}
+            style={{}}
+            disabled={true}
+            textTransform="uppercase"
+            onPress={() => {
+              // navigation.navigate('CreateCard');
+              setislocked(!islocked);
+            }}>
+            {islocked ? 'unLock the card' : 'lock the card'}
+          </PaleLockedButton>
         </View>
+      </View>
 
-        <CreatedSuccess Visible={success} onDissmis={onDissmis}>
-          {BodyModel ? <BodyModel onDissmis={onDissmis} /> : null}
-        </CreatedSuccess>
+      <CreatedSuccess Visible={success} onDissmis={onDissmis}>
+        {BodyModel ? <BodyModel onDissmis={onDissmis} /> : null}
+      </CreatedSuccess>
 
-        <Modalize
-          snapPoint={370}
-          ref={modalRef}
-          overlayStyle={{
-            backgroundColor: COLORS.blueGreenOpacity9,
-          }}
-          adjustToContentHeight={false}>
-          <ContentRenders onClose={onClose} />
-        </Modalize>
+      <Modalize
+        snapPoint={370}
+        ref={modalRef}
+        overlayStyle={{
+          backgroundColor: COLORS.blueGreenOpacity9,
+        }}
+        adjustToContentHeight={false}>
+        <ContentRenders onClose={onClose} />
+      </Modalize>
 
-        {/* Remove Card */}
-        <BottomSheetRemove
-          bottomSheetModalRef={bottomSheetModalRef2}
-          onPress={handlePresentModalRemove}
-          closeBottomUp2={closeBottomUp2}
-          navigation={navigation}
-          ShowPopup={onSuccess}
-        />
-        <Space space={30} />
-      </ScrollView>
+      {/* Remove Card */}
+      <BottomSheetRemove
+        bottomSheetModalRef={bottomSheetModalRef2}
+        onPress={handlePresentModalRemove}
+        closeBottomUp2={closeBottomUp2}
+        navigation={navigation}
+        ShowPopup={onSuccess}
+      />
+</ScrollView>
+
     </ReturnHeader>
   );
 };
 export default CreditsCards;
- 
+
+// <SafeAreaView style={styles.container}>
+//   <StatusBar translucent={true} backgroundColor={'transparent'} />
+//   <Image
+//     style={styles.ImageBackground}
+//     source={ImgBack}
+//     resizeMode="stretch"
+//   />
 
 const BodyModel = ({onDissmis}) => {
   return (
@@ -282,19 +291,19 @@ const RenderListVisa = ({navigation}) => {
     },
     {
       date: 'enabled',
-      T2: 'Associate your Card to ApplePay or\nGooglePay',
+      T2: 'Associate your Card to Applepay or\nGooglepay',
       source: Bank,
       to: 'BankAccounts',
     },
     {
       date: 'Disabled',
-      T2: 'Activate the Contactless',
+      T2: 'Activate the contactless',
       source: EWalletq,
       to: 'EWalletAccounts',
     },
     {
       date: 'Disabled',
-      T2: 'Activate Online Payments',
+      T2: 'Active Online Payments',
       source: EWallet,
       to: 'EWalletAccounts',
     },

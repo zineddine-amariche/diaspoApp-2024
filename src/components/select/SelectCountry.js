@@ -47,9 +47,11 @@ export default function SelectCountry({
   const [withFilter, setWithFilter] = useState(true);
   const [withAlphaFilter, setWithAlphaFilter] = useState(false);
   const [withCallingCode, setWithCallingCode] = useState(false);
+  const [callingCode, setCallingCode] = useState('');
   const onSelect = country => {
     setCountryCode(country.cca2);
     setCountry(country);
+    setCallingCode(country.callingCode[0])
     onChangeFormattedText(country.name, country.cca2);
   };
   const onClose = () => {
@@ -60,6 +62,8 @@ export default function SelectCountry({
   const handelOpen = () => {
     setVisible(true);
   };
+
+  console.log('callingCode', callingCode)
 
   //  console.log('selectedNationalityFlag', selectedNationalityFlag)
   //  console.log('countryCode', countryCode)

@@ -66,7 +66,7 @@ export function UseHome() {
    
   const {walletAccount} = useSelector(state => state.walletAccounts);
 
-  let heightBottomSheet = walletAccount ? 600 : 400;
+  let heightBottomSheet = walletAccount ? 800 : 400;
 
   return {
     onSubmit,

@@ -4,7 +4,7 @@ import {ImageBackground} from 'react-native';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import SecondaryHeader from '../../../components/Headers/root/SecondaryHeader';
 import Space from '../../../components/Space';
-import CodeQR from '../../../Assets/Img/QrCode/qrTrans.jpeg';
+import CodeQR from '../../../Assets/Img/QrCode/visaQr.jpeg';
 import {COLORS, SIZES} from '../../../theme';
 import ImgBack from '../../../Assets/Img/HomeBack.png';
 

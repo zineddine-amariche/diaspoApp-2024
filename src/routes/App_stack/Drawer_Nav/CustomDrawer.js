@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useContext} from 'react';
-import {View, StyleSheet, Image, SafeAreaView, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, Image, SafeAreaView,} from 'react-native';
 import {Avatar, Drawer} from 'react-native-paper';
 
 import {TouchableOpacity} from 'react-native';

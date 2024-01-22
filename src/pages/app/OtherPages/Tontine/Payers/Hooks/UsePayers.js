@@ -145,19 +145,17 @@ export function UsePayers() {
             projectId,
             routeData: 'null',
             object: obje,
-            isNew: true,
           }),
-          dispatch(resetSuccesParticipants());
+            dispatch(resetSuccesParticipants());
           dispatch(deleteSelectedListPayers());
         } else {
           dispatch(resetSuccesParticipants()),
-            dispatch(deleteSelectedListPayers());
-          navigation.navigate('ViewBenefeciareList', {
-            projectId,
-            routeData: 'null',
-            object: obje,
-            isNew: true,
-          });
+          dispatch(deleteSelectedListPayers())
+            navigation.navigate('ViewBenefeciareList', {
+              projectId,
+              routeData: 'null',
+              object: obje,
+            });
 
           dispatch(resetBeneficiaries());
           dispatch(deleteSelectedList());

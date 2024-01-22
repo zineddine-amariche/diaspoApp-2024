@@ -2,18 +2,12 @@ import React, {useRef} from 'react';
 import {
   View,
   StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  Image,
   useWindowDimensions,
   Platform,
 } from 'react-native';
 import {Modalize} from 'react-native-modalize';
-import Toast from 'react-native-simple-toast';
 
-import ImgBack from '../../../../../Assets/headerImg/background.png';
 import {PrimaryButton} from '../../../../../components/Buttons';
-import SecondaryHeader from '../../../../../components/Headers/root/SecondaryHeader';
 import {Txt} from '../../../../../components/utils';
 import {COLORS, SIZES} from '../../../../../theme';
 import {UseTontines} from './Hooks';
@@ -30,7 +24,6 @@ import {TabBar, TabView} from 'react-native-tab-view';
 import {useIsFocused} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import ReturnHeader from '../../../../../components/Headers/root/ReturnHeader';
-import Space from '../../../../../components/Space';
 
 const Tontine = ({navigation, navigation: {goBack}}) => {
   const layout = useWindowDimensions();
@@ -92,7 +85,6 @@ const Tontine = ({navigation, navigation: {goBack}}) => {
 
   let num = isLoading ? '  ' : ' (' + tontines?.ProjectLists.length + ')';
   return (
-
     <ReturnHeader
       title={t('Tontine.title') + num}
       goBack={() => {
@@ -105,8 +97,6 @@ const Tontine = ({navigation, navigation: {goBack}}) => {
           <View
             style={{width: SIZES.width, flex: 1}}
             showsVerticalScrollIndicator={false}>
-            <Space space={45} />
-
             <View style={styles.Tabs}>
               <TabView
                 navigationState={{index, routes}}
@@ -122,27 +112,25 @@ const Tontine = ({navigation, navigation: {goBack}}) => {
                 }}
               />
             </View>
+            {!isLoading && (
+              <View
+                style={{
+                  backgroundColor: COLORS.lightBlueGrey30,
+                }}>
+                <PrimaryButton
+                  gap
+                  style={{alignSelf: 'center'}}
+                  width={'90%'}
+                  onPress={() => {
+                    onOpen();
+                  }}
+                  loading={isLoading}>
+                  {t('Tontine.button1')}
+                </PrimaryButton>
+              </View>
+            )}
           </View>
         )}
-
-        {!isLoading && (
-          <View style={styles.containerButton}>
-            <PrimaryButton
-              width={'100%'}
-              onPress={() => {
- 
-                //  if (tontines.ProjectLists.length <= 5) {
-                   onOpen();
-                //  }   else {
-                //    Toast.show("you cannot create more than 5 tontines");
-                //  }
-              }}
-              loading={isLoading}>
-              {t('Tontine.button1')}
-            </PrimaryButton>
-          </View>
-        )}
-        {/* <Space space={80} /> */}
       </>
 
       <Modalize
@@ -198,36 +186,6 @@ const renderTabBar = props => {
     />
   );
 };
-
-const CustomHeader = ({children, navigation}) => {
-  const {t, i18n} = useTranslation();
-
-  const {tontines, isLoading} = useSelector(state => ({
-    ...state.tontines,
-  }));
-  let num = isLoading ? '  ' : ' (' + tontines?.ProjectLists.length + ')';
-
-  return (
-    <>
-      <SafeAreaView style={styles.container}>
-        <StatusBar translucent={true} backgroundColor={'transparent'} />
-        <Image
-          style={styles.ImageBackground}
-          source={ImgBack}
-          resizeMode="stretch"
-        />
-        <SecondaryHeader
-          Cancel="Return"
-          goBack={() => {
-            navigation.navigate('DiaspoBottomTab');
-          }}
-          title={t('Tontine.title') + num}
-        />
-        {children}
-      </SafeAreaView>
-    </>
-  );
-};
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.white,
@@ -252,7 +210,7 @@ const styles = StyleSheet.create({
   Tabs: {
     backgroundColor: COLORS.lightBlueGrey30,
     flex: 1,
-    top: Platform.OS == 'android' ? 20 : -10,
+    // top: Platform.OS == 'android' ? 20 : -10,
   },
 
   tabBar: {

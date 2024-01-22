@@ -164,7 +164,7 @@ const CreateTontine = ({navigation}) => {
                       <PrimaryInput
                         name={amount}
                         Label={'Amount per person'}
-                        placeholder="enter amount"
+                        placeholder="12.00"
                         style={styles.Input}
                         errors={errors.amount}
                         touched={touched.amount}

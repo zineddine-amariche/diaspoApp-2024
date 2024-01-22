@@ -1,20 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { CheckBox, Icon } from "@rneui/themed";
-import { COLORS } from "../../theme";
-import { Image } from "react-native";
+import {StyleSheet} from 'react-native';
+import React from 'react';
+import {CheckBox} from '@rneui/themed';
+import {Image} from 'react-native';
 
-const UseCheckBoxElements = ({ isCheck, onPress }) => {
+const UseCheckBoxElements = ({isCheck, onPress}) => {
   return (
     <CheckBox
-      checkedIcon={<Image  source={require("../../Assets/Img/verified.png")} />}
-      uncheckedIcon={<Image  source={require("../../Assets/Img/notverified.png")} />}
+      checkedIcon={<Image source={require('../../Assets/Img/verified.png')} />}
+      uncheckedIcon={
+        <Image source={require('../../Assets/Img/notverified.png')} />
+      }
       checked={isCheck}
       disabled
       onPress={onPress}
-
-
-
     />
   );
 };

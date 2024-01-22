@@ -101,7 +101,7 @@ const AmountTopup = ({navigation, route}) => {
           style={{
             flex: 1,
 
-            backgroundColor: COLORS.blueGreenOpacity9,
+            backgroundColor: COLORS.lightBlueGrey30,
             position: 'absolute',
             height: '100%',
             width: '100%',
@@ -116,9 +116,8 @@ const AmountTopup = ({navigation, route}) => {
           padding: 1,
           width: '100%',
           alignItems: 'center',
-          backgroundColor: COLORS.finished,
+          backgroundColor: COLORS.lightBlueGrey30,
         }}>
-        <Space space={30} />
         <Formik
           initialValues={state}
           validationSchema={schema}
@@ -173,7 +172,6 @@ const AmountTopup = ({navigation, route}) => {
                 behavior="padding">
                 <Pressable
                   style={{
-                    backgroundColor: COLORS.finished,
                     width: '90%',
                     flex: 1,
                     justifyContent: 'space-between',
@@ -225,6 +223,7 @@ const AmountTopup = ({navigation, route}) => {
                   </Pressable>
                   <View style={styles.containerButton}>
                     <PrimaryButtonLinear
+                    gap
                       width={'100%'}
                       onPress={() => {
                         handleSubmit();

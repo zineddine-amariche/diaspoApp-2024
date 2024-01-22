@@ -43,7 +43,8 @@ import emailExistsSlice from "./Features/authentification/Register/emailExistsSl
 import CreateEwalletsSlice from "./Features/CreateWallets/slice"
 import emailForgotExistsSlice from './Features/authentification/ForgotPass/emailExistsSlice'
 import payementsMethodSlice from './Features/Payements/getPayementMethods/slice'
-import PaySafeCardSlice from './Features/Global/PaysafeCard'
+import GlobaleState from './App'
+
 const reducers = combineReducers({
   token: TokenSlice,
   auth: loginSlice,
@@ -85,7 +86,7 @@ const reducers = combineReducers({
   CreateEwalletsSlice,
   forgotEmail:emailForgotExistsSlice,
   payementsMethodSlice,
-  PaySafeCard:PaySafeCardSlice
+  App:GlobaleState
 });
 
 const persistConfig = {
@@ -98,6 +99,7 @@ const persistConfig = {
     "contacts",
     "payersList",
     "walletAccounts",
+    "App"
   ],
   // whitelist: [],
 };

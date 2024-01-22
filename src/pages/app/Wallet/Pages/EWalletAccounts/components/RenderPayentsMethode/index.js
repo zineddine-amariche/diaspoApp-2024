@@ -1,9 +1,13 @@
-import { StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {useRef, useState} from 'react';
- 
+import Rectangle from '../../../../../../../components/views/Rectangle';
+import HView from '../../../../../../../components/views/HView/HView';
+import imaPoint from '../../../../../../../Assets/Img/Ewallet.png';
 
 import {
+  PaleGreyButton,
   PrimaryButtonLinear,
+  PrimaryLinearOption,
 } from '../../../../../../../components/Buttons';
 import {Txt} from '../../../../../../../components/utils';
 import DropDown from '../../../../../../../components/select/DropDown';
@@ -11,6 +15,7 @@ import {Formik} from 'formik';
 import {usePayemnts} from './Hooks/usePayemnts';
 import Space from '../../../../../../../components/Space';
 import {COLORS} from '../../../../../../../theme';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import InputPhone from '../../../../../../../components/Input/PhoneInput';
 import { useSelector } from 'react-redux';
 const RenderPayentsMethode = ({userId,ClosePayementMthode}) => {

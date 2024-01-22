@@ -59,8 +59,8 @@ const CashOut = ({navigation, navigation: {goBack}, route}) => {
             return (
               <View
                 style={{
-                  backgroundColor: COLORS.finished,
-                  padding: 20,
+                  backgroundColor: COLORS.lightBlueGrey30,
+                  paddingHorizontal: 20,
                   flex: 1,
                   justifyContent: 'space-between',
                 }}>
@@ -93,6 +93,7 @@ const CashOut = ({navigation, navigation: {goBack}, route}) => {
 
                 <View>
                   <PrimaryButtonLinear
+                  gap
                     disabled={NavigationCashOut}
                     onPress={() => {
                       handleSubmit();

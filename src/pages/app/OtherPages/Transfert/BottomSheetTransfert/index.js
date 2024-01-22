@@ -39,14 +39,18 @@ import BottomSheetSelect from './BottomSheetSelect';
 import ReturnHeader from '../../../../../components/Headers/root/ReturnHeader';
 import {Modalize} from 'react-native-modalize';
 import RenderAppUsers from '../Components/RenderContents/RenderAppUsers';
-import {connected, resetUserConnected} from '../../../../../redux/Features/Tontine/ManagePayers/ConectedUsers/slice';
+import {
+  connected,
+  resetUserConnected,
+} from '../../../../../redux/Features/Tontine/ManagePayers/ConectedUsers/slice';
 import ModelConfirmTransfers from '../models/Model.ConfirmTransfers';
 import {onHandleSuccessTransfer} from '../../../../../redux/Features/WalletAccount/Slice';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { resetNonAppUserConnected } from '../../../../../redux/Features/Tontine/ManagePayers/NonAppUsers/slice';
-import { Logout } from '../../../../../redux/Features/authentification/Login/Slice';
-import { resetTontine } from '../../../../../redux/Features/Tontine/ManageTontine/Slices/tontineSlice';
+import {resetNonAppUserConnected} from '../../../../../redux/Features/Tontine/ManagePayers/NonAppUsers/slice';
+import {Logout} from '../../../../../redux/Features/authentification/Login/Slice';
+import {resetTontine} from '../../../../../redux/Features/Tontine/ManageTontine/Slices/tontineSlice';
+import BTHeader from '../../../../../components/Headers/root/BTHeader';
 
 const BottomSheetTransfertSelectCountry = ({goBack}) => {
   const bottomSheetModalRef = useRef(null);
@@ -141,9 +145,11 @@ const BottomSheetTransfertSelectCountry = ({goBack}) => {
 
   const onOpen = () => {
     modalRef.current?.open();
+    console.log('Bottom sheet opened');
   };
   const handleCloseModal = () => {
     modalRef.current?.close();
+    console.log('Bottom sheet closed');
   };
 
   const {connectedUsers, loading, message} = useSelector(state => ({
@@ -154,8 +160,7 @@ const BottomSheetTransfertSelectCountry = ({goBack}) => {
     ...state.walletAccounts,
   }));
 
-  const onSuccessAction = () => {  }
-
+  const onSuccessAction = () => {};
 
   const clearAsyncStorage = async () => {
     dispatch(resetUserConnected());
@@ -167,8 +172,6 @@ const BottomSheetTransfertSelectCountry = ({goBack}) => {
   const onErrorAction = () => {
     clearAsyncStorage();
   };
-
-
 
   // !getConnectedUsers
   useEffect(() => {
@@ -195,45 +198,46 @@ const BottomSheetTransfertSelectCountry = ({goBack}) => {
 
   return (
     <ReturnHeader goBack={goBack} Cancel="Return" title={'Transfer'}>
-      <Formik
-        initialValues={state}
-        validationSchema={schema}
-        onSubmit={(values, formikAction) => {
-          // console.log('values', values.amount);
-          if (balance > values.amount) {
-            Transfers(values);
-            formikAction.setSubmitting(false);
-            formikAction.resetForm();
-          } else {
-            Toast.show("You do not have anough money to transfer");
-          }
-        }}>
-        {({
-          values,
-          errors,
-          handleChange,
-          handleBlur,
-          touched,
-          handleSubmit,
-          isSubmitting,
-          setFieldValue,
-          isValid,
-          setErrors,
-          resetForm,
-        }) => {
-          useEffect(() => {
-            setErrors(null);
-            resetForm();
-          }, [selected]);
+      <View style={{flex: 1}}>
+        <Formik
+          initialValues={state}
+          validationSchema={schema}
+          onSubmit={(values, formikAction) => {
+            // console.log('values', values.amount);
+            if (balance > values.amount) {
+              Transfers(values);
+              formikAction.setSubmitting(false);
+              formikAction.resetForm();
+            } else {
+              Toast.show('You do not have anough money to transfer');
+            }
+          }}>
+          {({
+            values,
+            errors,
+            handleChange,
+            handleBlur,
+            touched,
+            handleSubmit,
+            isSubmitting,
+            setFieldValue,
+            isValid,
+            setErrors,
+            resetForm,
+          }) => {
+            useEffect(() => {
+              setErrors(null);
+              resetForm();
+            }, [selected]);
 
-          return (
-            <>
-              {Platform.OS == 'android' ? <Space space={10} /> : null}
-
-              <ScrollView
-                contentContainerStyle={{width: SIZES.width}}
-                showsVerticalScrollIndicator={false}>
-                {/* <MainAccount
+            return (
+              <View style={{flex: 1, backgroundColor: COLORS.lightBlueGrey30}}>
+                <View
+                  style={{flex: 1, backgroundColor: COLORS.lightBlueGrey30}}>
+                  <ScrollView
+                    contentContainerStyle={{width: SIZES.width}}
+                    showsVerticalScrollIndicator={false}>
+                    {/* <MainAccount
                   onSelect={onSelect}
                   selected={selected}
                   Visible={isOpenAccount}
@@ -241,122 +245,123 @@ const BottomSheetTransfertSelectCountry = ({goBack}) => {
                   Change={Change}
                   price={price}
                 /> */}
-                {/* <Space space={20} /> */}
-                {
-                  <View
-                    padding={20}
-                    style={{
-                      backgroundColor: COLORS.white,
-                      padding: 20,
-                      alignItems: 'center',
-                      marginHorizontal: 20,
-                      marginTop: 40,
-                      borderRadius: 8,
-                      shadowColor: '#171717',
-                      shadowOffset: {width: 0, height: 2},
-                      shadowOpacity: 0.2,
-                      shadowRadius: 2,
-                      elevation: 2,
-                      flex: 1,
-                    }}>
-                    <Form0
-                      handlePresentModalPress3={onOpen}
-                      values={values}
-                      errors={errors}
-                      touched={touched}
-                      handleChange={handleChange}
-                      handleBlur={handleBlur}
-                      handlePresentModalSelect={handlePresentModalSelect}
-                      setFieldValue={setFieldValue}
-                      closeSelect={closeSelect}
-                    />
-                  </View>
-                }
-                <Space space={85} />
-              </ScrollView>
+                    <View
+                      style={{
+                        backgroundColor: COLORS.white,
+                        padding: 20,
+                        alignItems: 'center',
+                        marginHorizontal: 20,
+                        marginTop: 20,
+                        borderRadius: 8,
+                        shadowColor: '#171717',
+                        shadowOffset: {width: 0, height: 2},
+                        shadowOpacity: 0.2,
+                        shadowRadius: 2,
+                        elevation: 2,
+                        flex: 1,
+                        marginBottom: 2,
+                      }}>
+                      <Form0
+                        handlePresentModalPress3={onOpen}
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        handlePresentModalSelect={handlePresentModalSelect}
+                        setFieldValue={setFieldValue}
+                        closeSelect={closeSelect}
+                      />
+                    </View>
+                  </ScrollView>
+                </View>
+                <PrimaryButtonLinear
+                  style={{alignSelf: 'center'}}
+                  disabled={true}
+                  onPress={() => {
+                    handleSubmit();
+                  }}
+                  gap
+                  width="90%"
+                  loading={isLoading}>
+                  CONFIRM
+                </PrimaryButtonLinear>
 
-              <PrimaryButtonLinear
-                disabled={true}
-                onPress={() => {
-                  handleSubmit();
-                }}
-                width="90%"
-                loading={isLoading}>
-                CONFIRM
-              </PrimaryButtonLinear>
-
-              {Platform.OS == 'android' ? <Space space={20} /> : null}
-              <Bottom1
-                bottomSheetModalRef={bottomSheetModalRef}
-                closeDrawer={closeDrawer}
-                closeAccount={closeAccount}
-                ChangeAccount={ChangeAccount}
-              />
-              <Bottom2
-                bottomSheetModalRef={bottomSheetModalRef2}
-                closeDrawer={closeDrawer}
-                ContactsPhone={contacts.contacts}
-              />
-              {/* <Bottom3
+                <Bottom1
+                  bottomSheetModalRef={bottomSheetModalRef}
+                  closeDrawer={closeDrawer}
+                  closeAccount={closeAccount}
+                  ChangeAccount={ChangeAccount}
+                />
+                <Bottom2
+                  bottomSheetModalRef={bottomSheetModalRef2}
+                  closeDrawer={closeDrawer}
+                  ContactsPhone={contacts.contacts}
+                />
+                {/* <Bottom3
                 bottomSheetModalRef={bottomSheetModalRef3}
                 closeDrawer={closeDrawer}
                 ContactsPhone={contacts.contacts}
               /> */}
-              <Bottom4
-                bottomSheetModalRef={bottomSheetModalRef4}
-                closeDrawer={closeDrawer}
-                onSuccess={onSuccess}
-              />
+                <Bottom4
+                  bottomSheetModalRef={bottomSheetModalRef4}
+                  closeDrawer={closeDrawer}
+                  onSuccess={onSuccess}
+                />
 
-              <BottomSheetSelect
-                bottomSheetModalRef={bottomSheetModalRef5}
-                onPress={handlePresentModalSelect}
-                closeSelect={closeSelect}
-                setFieldValue={val => {
-                  setFieldValue('bankName', val);
-                }}
-              />
+                <BottomSheetSelect
+                  bottomSheetModalRef={bottomSheetModalRef5}
+                  onPress={handlePresentModalSelect}
+                  closeSelect={closeSelect}
+                  setFieldValue={val => {
+                    setFieldValue('bankName', val);
+                  }}
+                />
 
-              <CreatedSuccess
-                Visible={showSuccessTransfer}
-                onDissmis={onDissmis}
-                top={90}>
-                {BodyModel ? <BodyModel onDissmis={onDissmis} /> : null}
-              </CreatedSuccess>
+                <CreatedSuccess
+                  Visible={showSuccessTransfer}
+                  onDissmis={onDissmis}
+                  top={90}>
+                  {BodyModel ? <BodyModel onDissmis={onDissmis} /> : null}
+                </CreatedSuccess>
 
-              <Modalize
-                snapPoint={600}
-                ref={modalRef}
-                overlayStyle={{
-                  backgroundColor: COLORS.blueGreenOpacity9,
-                }}
-                adjustToContentHeight={false}>
-                <View
-                  style={{
-                    marginTop: 20,
-                  }}>
-                  <RenderAppUsers
-                    type={'transfert'}
-                    bottomSheetModalRef={bottomSheetModalRef3}
-                    closeDrawer={handleCloseModal}
-                    ContactsPhone={connectedUsers}
-                    setFieldValue={setFieldValue}
-                  />
-                </View>
-              </Modalize>
-            </>
-          );
-        }}
-      </Formik>
+                <Modalize
+                  panGestureEnabled={false}
+                  tapGestureEnabled={false}
+                  snapPoint={600}
+                  ref={modalRef}
+                  overlayStyle={{
+                    backgroundColor: COLORS.blueGreenOpacity9,
+                    top:-120
+                  }}
+                  adjustToContentHeight={false}>
+                  <View
+                    style={{
+                      marginTop: 20,
+                    }}>
+                    <RenderAppUsers
+                      type={'transfert'}
+                      bottomSheetModalRef={bottomSheetModalRef3}
+                      closeDrawer={() => {
+                        handleCloseModal();
+                      }}
+                      ContactsPhone={connectedUsers}
+                      setFieldValue={setFieldValue}
+                    />
+                  </View>
+                </Modalize>
+              </View>
+            );
+          }}
+        </Formik>
 
-      <ModelConfirmTransfers
-        success={showConfirm}
-        onDissmis={onDissmis}
-        pressNo={pressNo}
-        pressYes={pressYes}
-      />
-                <Space space={85} />
-
+        <ModelConfirmTransfers
+          success={showConfirm}
+          onDissmis={onDissmis}
+          pressNo={pressNo}
+          pressYes={pressYes}
+        />
+      </View>
     </ReturnHeader>
   );
 };

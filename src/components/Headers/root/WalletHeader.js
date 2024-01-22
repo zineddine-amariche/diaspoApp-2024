@@ -40,17 +40,12 @@ export default WalletHead;
 const styles = StyleSheet.create({
   header: {
     paddingTop: Platform.OS =='ios'?30: 50,
-    // paddingLeft: 25,
-    // paddingRight: 20,
-    // flexDirection: "row",
-    // alignItems: "center",
+    paddingLeft: 25,
+    paddingRight: 20,
+    flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
-    // width: "100%",
-    alignItems: 'center',
-    width: '100%',
-    // paddingTop: Platform.OS == 'ios' ? 5 : 50,
-    // paddingBottom: Platform.OS == 'ios' ? 20 : 30,
-    zIndex: 999,
+    width: "100%",
   },
   button: {
     alignItems: "center",

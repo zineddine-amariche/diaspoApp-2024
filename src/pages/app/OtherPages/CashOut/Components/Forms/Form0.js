@@ -30,7 +30,7 @@ const Form0 = ({
         <PrimaryInput
           name={amount}
           Label={'Amount of money'}
-          placeholder="enter amount"
+          placeholder="Enter amount"
           style={styles.Input}
           errors={errors.amount}
           touched={touched.amount}

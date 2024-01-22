@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, SafeAreaView, StatusBar, Image, Platform} from 'react-native';
 
+import ImgBack from '../../../../../../Assets/Img/HomeBack.png';
+import SecondaryHeader from '../../../../../../components/Headers/root/SecondaryHeader';
 import Space from '../../../../../../components/Space';
 import {PrimaryButtonLinear} from '../../../../../../components/Buttons';
 
@@ -18,6 +20,8 @@ import Spiner from '../../../../../../components/spiner';
 import styles from './styles';
 import ReturnHeader from '../../../../../../components/Headers/root/ReturnHeader';
 import {COLORS} from '../../../../../../theme';
+import ModelValidateReoder from '../components/Models/Model.ValidateReOrder';
+import { useValidateReoder } from './Hooks/useValidateReoder';
 
 const durationMs = 1350;
 
@@ -46,7 +50,13 @@ const BenefeciareListReorder = ({navigation, route}) => {
   }, [projectId, dispatch, title]);
 
 
-  
+  const {
+    pressNo:PressDesValidate,
+    pressYes:PreesYes,
+    onClose,
+    onShow,
+    showValidateOrder,
+  } =useValidateReoder()
 
   return isLoading ? (
     <Spiner />
@@ -75,7 +85,7 @@ const BenefeciareListReorder = ({navigation, route}) => {
         <UseDraggebleFlatList DataV={data?.data?.beneficiaries} />
 
         <View style={styles.containerButton}>
-          {/* <PrimaryButtonLinear
+          <PrimaryButtonLinear
             disabled={true}
             onPress={() => {
               // onSuccess2();
@@ -83,7 +93,7 @@ const BenefeciareListReorder = ({navigation, route}) => {
             }}>
             Validate the order
           </PrimaryButtonLinear>
-          <Space space={15} /> */}
+          <Space space={15} />
           {confirmbtn ? (
             <PrimaryButtonLinear
               disabled={ListToReorder?.length == 0 ? false : true}
@@ -118,7 +128,12 @@ const BenefeciareListReorder = ({navigation, route}) => {
         confirmbtn={confirmbtn}
       />
 
-  
+      <ModelValidateReoder
+        success={showValidateOrder}
+        onDissmis={onClose}
+        pressNo={onClose}
+        pressYes={PreesYes}
+      />
     </ReturnHeader>
   );
 };

@@ -1,16 +1,13 @@
-current directory: /Users/user/Desktop/All-Projects/-Diaspo-/main-diaspo-nbk-ios/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
-/Users/user/.rvm/rubies/ruby-2.7.5/bin/ruby -I /Users/user/.rvm/rubies/ruby-2.7.5/lib/ruby/site_ruby/2.7.0 extconf.rb
+current directory: /Users/user/Desktop/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+/Users/user/.rvm/rubies/ruby-2.7.5/bin/ruby -I /Users/user/.rvm/rubies/ruby-2.7.5/lib/ruby/2.7.0 -r ./siteconf20230609-55064-1dhf8uz.rb extconf.rb
 creating Makefile
 
-current directory: /Users/user/Desktop/All-Projects/-Diaspo-/main-diaspo-nbk-ios/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
-make DESTDIR\= sitearchdir\=./.gem.20230221-74853-1fs0fpz sitelibdir\=./.gem.20230221-74853-1fs0fpz clean
+current directory: /Users/user/Desktop/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" clean
 
-current directory: /Users/user/Desktop/All-Projects/-Diaspo-/main-diaspo-nbk-ios/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
-make DESTDIR\= sitearchdir\=./.gem.20230221-74853-1fs0fpz sitelibdir\=./.gem.20230221-74853-1fs0fpz
+current directory: /Users/user/Desktop/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR="
 make: Nothing to be done for `all'.
 
-current directory: /Users/user/Desktop/All-Projects/-Diaspo-/main-diaspo-nbk-ios/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
-make DESTDIR\= sitearchdir\=./.gem.20230221-74853-1fs0fpz sitelibdir\=./.gem.20230221-74853-1fs0fpz install
-
-current directory: /Users/user/Desktop/All-Projects/-Diaspo-/main-diaspo-nbk-ios/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
-make DESTDIR\= sitearchdir\=./.gem.20230221-74853-1fs0fpz sitelibdir\=./.gem.20230221-74853-1fs0fpz clean
+current directory: /Users/user/Desktop/Project/vendor/bundle/ruby/2.7.0/gems/json-2.6.3/ext/json
+make "DESTDIR=" install

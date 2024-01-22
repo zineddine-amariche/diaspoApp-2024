@@ -12,9 +12,9 @@ export const createNotification = createAsyncThunk(
 
       if (res.status == 200) {
         onNotifySuccess();
-        // Toast.show(
-        //   `notification success ${res.data.success} / notification failed ${res.data.failure} /`,
-        // );
+        Toast.show(
+          `notification success ${res.data.success} / notification failed ${res.data.failure} /`,
+        );
         return res.data;
       }
     } catch (error) {

@@ -216,6 +216,8 @@ const FormInputs = ({
           onChangeFormattedText={(text, flag) => {
             setFieldValue('nationality', text);
             setFieldValue('nationalityFlagName', flag);
+            console.log('flag', flag)
+            console.log('text', text)
           }}
           touched={IsTouched}
           setIsTouched={setIsTouched}

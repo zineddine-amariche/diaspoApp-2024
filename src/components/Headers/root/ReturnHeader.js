@@ -1,18 +1,10 @@
-import {
-  Image,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import React from 'react';
-import {COLORS, SIZES} from '../../../theme';
+import {Image, SafeAreaView, StyleSheet, View} from 'react-native';
+import React, {useState} from 'react';
+import {COLORS} from '../../../theme';
 import {StatusBar} from 'react-native';
-import SecondaryHeader from './SecondaryHeader';
-import ImgBack from '../../../Assets/headerImg/background.png';
+import HeaderContent from './SecondaryHeader';
+import ImgBack from '../../../Assets/Img/bg.png';
 import Spiner from '../../spiner';
-import Space from '../../Space';
 
 const ReturnHeader = ({
   children,
@@ -25,27 +17,29 @@ const ReturnHeader = ({
   TextIn,
 }) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar translucent={true} backgroundColor={'transparent'} />
-     
-        <Image
-          style={styles.ImageBackground}
-          source={ImgBack}
-          resizeMode="stretch"
-        />
-        <SecondaryHeader
-          Cancel="Return"
-          goBack={goBack}
-          title={title}
-          sousTitre={sousTitre}
-          Notifications={Notifications}
-          sousTontine={sousTontine}
-          TextIn={TextIn}
-        />
-        <Space space={Platform.OS == "android"?20 :-10}/>
-        
-      {Loading ? <Spiner /> : children}
-    </SafeAreaView>
+    <>
+      <View style={styles.container}>
+        <StatusBar backgroundColor={"transparent"} />
+        <SafeAreaView style={styles.Box}>
+          <Image
+            style={styles.ImageBackground}
+            source={ImgBack}
+            resizeMode="contain"
+          />
+          <HeaderContent
+            Cancel="Return"
+            goBack={goBack}
+            title={title}
+            sousTitre={sousTitre}
+            Notifications={Notifications}
+            sousTontine={sousTontine}
+            TextIn={TextIn}
+          />
+        </SafeAreaView>
+
+        {Loading ? <Spiner /> : children}
+      </View>
+    </>
   );
 };
 
@@ -53,17 +47,22 @@ export default ReturnHeader;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.finished,
-    alignItems: 'center',
+    backgroundColor: COLORS.white,
     flex: 1,
   },
+  Box: {
+    width: '100%',
+    height: 120,
+    borderRadius: 18,
+    overflow: 'hidden',
+    backgroundColor: COLORS.blueGreen,
+  },
   ImageBackground: {
-    // ...StyleSheet.absoluteFillObject,
-    width: SIZES.width,
-    // height: 170,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     zIndex: 99,
-     position: 'absolute',
-      top: Platform.OS == 'android' ? -40 : -40,
-    //  top: 0,
+    position: 'absolute',
   },
 });

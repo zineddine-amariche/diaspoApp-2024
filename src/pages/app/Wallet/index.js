@@ -1,43 +1,136 @@
-import {Platform, StyleSheet} from 'react-native';
+import {
+  Alert,
+  Linking,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import {ScrollView} from 'react-native';
 import WalletLayout from '../../../components/views/Layouts/AppLayout/walletLayout';
 import Space from '../../../components/Space';
+import BottomSheetTopUpAccount from './Models/BottomSheetTopUpAccount';
+import {useRef} from 'react';
+import BottomSheetSelect from './Models/BottomSheetSelect';
 import WalletHead from '../../../components/Headers/root/WalletHeader';
+import ActiveTontine from './Components/2 - ActiveTontine';
 import WalletConnection from './Components/1 - WalletConnection';
+import AccountsBox from './Components/0 - AccountBox/components/RectangleAccount';
 import {UseWallets} from './Hooks';
 import {useIsFocused} from '@react-navigation/native';
 import {getTontines} from '../../../redux/Features/Tontine/ManageTontine/Slices/tontineSlice';
 import {useSelector} from 'react-redux';
+import Spiner from '../../../components/spiner';
+import Rectangle from '../../../components/views/Rectangle';
+import {Txt} from '../../../components/utils';
+import {COLORS} from '../../../theme';
 
 const Wallet = ({navigation}) => {
   const isFocused = useIsFocused();
 
-  const {isLoading} = useSelector(state => ({
+  const {tontines, isLoading, message} = useSelector(state => ({
     ...state.tontines,
   }));
 
   const {object, dispatch} = UseWallets();
+  const bottomSheetModalRef = useRef(null);
+  const bottomSheetModalRef3 = useRef(null);
+
+  const [Change, setChange] = useState();
+  const [price, setPrice] = useState();
+
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+
+  const handlePresentModalSelect = useCallback(() => {
+    bottomSheetModalRef3.current?.present();
+  }, []);
+
+  const closeBottomUp3 = useCallback(() => {
+    bottomSheetModalRef3.current.close();
+  }, []);
+
+  const closeBottomUp1 = useCallback(() => {
+    bottomSheetModalRef.current.close();
+  }, []);
+
+  const ChangeAccount = Item => {
+    setChange(Item.label);
+    setPrice(Item.price);
+    closeBottomUp3();
+  };
 
   useEffect(() => {
     dispatch(getTontines(object));
   }, [isFocused]);
 
   return (
-    <WalletLayout isLoading={isLoading}>
-      <WalletHead
-        title={'My registered payment methods'}
-        openDrawer={() => navigation.toggleDrawer()}
-      />
+    <>
+      {isLoading ? (
+        <Spiner />
+      ) : (
+        <WalletLayout>
+          <WalletHead
+            title={'My registered payment methods'}
+            openDrawer={() => navigation.toggleDrawer()}
+          />
 
-      <ScrollView contentContainerStyle={{}}>
-        {Platform.OS == 'os' && <Space space={90} />}
-        {Platform.OS !== 'os' && <Space space={50} />}
+          <ScrollView contentContainerStyle={{}}>
+            {Platform.OS == 'os' && <Space space={90} />}
+            {Platform.OS !== 'os' && <Space space={50} />}
 
-        <WalletConnection navigation={navigation} />
-        <Space space={110} />
-      </ScrollView>
-    </WalletLayout>
+            {/* <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{flexDirection: 'row', paddingRight: 20}}>
+              {dataAccounts.map((item, index) => {
+                return (
+                  <View key={index}>
+                    <AccountsBox
+                      onPress={handlePresentModalSelect}
+                      Change={Change}
+                      price={price}
+                      item={item}
+                      handlePresentModalPress={handlePresentModalPress}
+                    />
+                  </View>
+                );
+              })}
+            </ScrollView> */}
+
+            <WalletConnection navigation={navigation} />
+            <Space space={20} />
+
+            {/* <ActiveTontine navigation={navigation} /> */}
+            {/* <Space space={20} /> */}
+            {/* <RecentTransaction navigation={navigation} /> */}
+            {Platform.OS !== 'os' && <Space space={90} />}
+            {Platform.OS == 'os' && <Space space={90} />}
+
+          </ScrollView>
+
+          {/* Account */}
+          <BottomSheetTopUpAccount
+            bottomSheetModalRef={bottomSheetModalRef}
+            onPress={handlePresentModalPress}
+            closeBottomUp1={closeBottomUp1}
+            navigation={navigation}
+          />
+
+          {/* Select Diaspo Account */}
+          <BottomSheetSelect
+            bottomSheetModalRef={bottomSheetModalRef3}
+            onPress={handlePresentModalSelect}
+            onPress2={handlePresentModalPress}
+            closeBottomUp2={closeBottomUp3}
+            navigation={navigation}
+            ChangeAccount={ChangeAccount}
+          />
+        </WalletLayout>
+      )}
+    </>
   );
 };
 
